@@ -18,6 +18,15 @@ This role will setup a mailcow dockerized email server.
 ## Notes
 This role will use by default the `inventory_hostname` as mailcow hostname, this means that you have to use the full qualified domain name as your inventory hostname e.g. `mail.mailcow.tld` or you set `mailcow__hostname` to the correct FQDN.
 
+### Custom docker-volume paths
+It's possible to define custom paths for some docker volumes if you want to store them not under `/var/lib/docker/volumes`. This works with the `docker-compose.override.yml` file mechanism.
+E.g. to store the `vmail-vol-1` at `/storage/vmail` following the variable `mailcow__override_volumes` has to be defined like this:
+```
+mailcow__override_volumes:
+  - docker_volume_name: "vmail-vol-1"
+    mount_path: "/storage/vmail"
+```
+
 ## Variables
 <!-- Markdown table can be edited with https://www.tablesgenerator.com/markdown_tables -->
 |                    name                   |                                   purpose                                   |       default value       |                                    note                                   |
@@ -28,6 +37,7 @@ This role will use by default the `inventory_hostname` as mailcow hostname, this
 |            `mailcow__timezone`            |  used to set the timezone your mailcow runs in during the config generation |          not set          |                              **must be set**                              |
 |   `mailcow__docker_compose_project_name`  |         sets the docker-compose projectname to a user-defined string        |    `mailcowdockerized`    |                                                                           |
 |              `mailcow__theme`             |             set the default mailcow theme in vars.local.inc.php             |          `lumen`          |                                                                           |
+|        `mailcow__override_volumes`        |       Custom volume paths, for example for different vmail-vol-1 path       |                           |       List of dicts with keys `docker_volume_name` and `mount_path`       |
 |        `mailcow__config_http_port`        |                        sets HTTP_PORT in mailcow.conf                       |            `80`           |                                                                           |
 |        `mailcow__config_http_bind`        |                        sets HTTP_BIND in mailcow.conf                       |         `0.0.0.0`         |                                                                           |
 |        `mailcow__config_https_port`       |                       sets HTTPS_PORT in mailcow.conf                       |           `443`           |                                                                           |

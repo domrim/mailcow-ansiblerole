@@ -1,0 +1,9 @@
+version: '2.1'
+volumes:
+{% for volume in mailcow__override_volumes %}
+  {{ volume.docker_volume_name }}:
+    driver_opts:
+      type: none
+      device: {{ volume.mount_path }}
+      o: bind
+{% endfor %}

@@ -54,6 +54,12 @@
     src: vars.local.inc.php.j2
     dest: "{{ mailcow__install_path }}/data/web/inc/vars.local.inc.php"
 
+- name: Template docker-compose override
+  template:
+    src: docker-compose.override.yml.j2
+    dest: "{{ mailcow__install_path }}/docker-compose.override.yml"
+  when: mailcow__override_volumes is defined
+
 - name: Check if mailcow is running
   become: yes
   docker_container_info:
