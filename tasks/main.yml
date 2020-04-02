@@ -1,4 +1,7 @@
 ---
+- name: install docker
+  include_role:
+    name: domrim.general.docker
 
 - name: Install required apt packages
   become: yes
