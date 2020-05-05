@@ -14,8 +14,8 @@ galaxy_info:
     - mailserver
     - docker
   dependencies:
-   - role: docker-ce
-   - role: docker-compose
+    - role: docker-ce
+    - role: docker-compose
 dependencies:
   - role: docker_host
   - role: lvm_mount

@@ -1,19 +1,19 @@
 ---
 - name: Copy updater script
-  become: yes
+  become: true
   template:
     src: updater.sh.j2
     dest: /opt/mailcowupdater.sh
     mode: '0777'
 
 - name: Create update logs directory
-  become: yes
+  become: true
   file:
     dest: /var/log/mailcow-update/
     state: directory
 
 - name: Update mailcow
-  become: yes
+  become: true
   shell: /opt/mailcowupdater.sh
   args:
     executable: /bin/bash
@@ -26,8 +26,8 @@
     var: mailcow_update.stdout_lines
 
 - name: Write update log to file
-  become: yes
+  become: true
   copy:
     content: "{{ mailcow_update.stdout }}"
     dest: "/var/log/mailcow-update/update-{{ ansible_date_time.iso8601_basic_short }}.log"
-  no_log: True
+  no_log: true

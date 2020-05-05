@@ -1,6 +1,6 @@
 ---
 - name: Copy redirect.conf
-  become: yes
+  become: true
   template:
     src: redirect.conf.j2
     dest: "{{ mailcow__install_path }}/data/conf/nginx/redirect.conf"

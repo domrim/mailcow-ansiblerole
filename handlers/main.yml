@@ -1,15 +1,15 @@
 ---
 
 - name: Restart mailcow
-  become: yes
+  become: true
   docker_compose:
     project_src: "{{ mailcow__install_path }}"
     project_name: "{{ mailcow__docker_compose_project_name }}"
-    restarted: yes
+    restarted: true
     state: present
 
 - name: Recreate mailcow
-  become: yes
+  become: true
   docker_compose:
     project_src: "{{ mailcow__install_path }}"
     project_name: "{{ mailcow__docker_compose_project_name }}"

@@ -1,5 +1,4 @@
 ---
-
 mailcow__hostname: "{{ inventory_hostname }}"
 
 mailcow__install_path: "/opt/mailcow-dockerized"
@@ -17,6 +16,6 @@ mailcow__docker_compose_project_name: mailcowdockerized
 # WARNING: Only lumen is loaded locally. Enabling any other theme, will download external sources.
 mailcow__theme: lumen
 
-mailcow__install_updates: yes
+mailcow__install_updates: true
 
-mailcow__redirect_http_to_https: no
+mailcow__redirect_http_to_https: false
