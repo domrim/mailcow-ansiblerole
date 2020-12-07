@@ -21,3 +21,4 @@ dependencies:
   - role: lvm_mount
     vars:
       lvm_mounts: "{{ mailcow__override_volumes }}"
+    when: mailcow__override_volumes is defined
