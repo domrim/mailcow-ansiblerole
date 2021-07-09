@@ -17,7 +17,7 @@ galaxy_info:
     - role: docker-ce
     - role: docker-compose
 dependencies:
-  - role: docker_host
+  - role: docker
   - role: lvm_mount
     vars:
       lvm_mounts: "{{ mailcow__override_volumes }}"
