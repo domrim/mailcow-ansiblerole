@@ -3,6 +3,19 @@
   include_role:
     name: domrim.general.docker
 
+- name: create firewall rule
+  include_role:
+    name: domrim.general.firewall_rule
+  vars:
+    firewall_rule_priority: 10
+    firewall_rule_name: mailcow
+    firewall_rule_rules:
+      - protocol: tcp
+        dport:
+          - 80
+        action: accept
+        comment: Accept http traffic from everywhere for ACME http check
+
 - name: Install required apt packages
   become: yes
   apt:
